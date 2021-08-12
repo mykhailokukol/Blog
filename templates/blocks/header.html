@@ -1,0 +1,18 @@
+<header>
+	<table class="u-full-width">
+		<tr>
+			<td><a href="/">Главная</a></td>
+			<td><a href="#">Музыка</a></td>
+			<td><a href="#">Кнопка 2</a></td>
+			<td><a href="#">Кнопка 3</a></td>
+			<td><a href="#">Кнопка 4</a></td>
+			{% if user.is_authenticated %}
+			<td><a href="#">{{ user.username }}</a></td>
+			<td><a href="#">Выйти</a></td>
+			{% else %}
+			<td><a href="#">Войти</a></td>
+			<td><a href="#">Регистрация</a></td>
+			{% endif %}
+		</tr>
+	</table>
+</header>
