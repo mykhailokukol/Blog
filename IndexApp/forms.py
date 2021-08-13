@@ -11,7 +11,7 @@ class ProfileInfoEditForm(forms.Form):
 		"cols":20,
 		"style":"resize:none;"
 		}), label='О себе')
-
+#
 class ProfilePhotoEditForm(forms.Form):
 	class Meta:
 		model = models.Profile
