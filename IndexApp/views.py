@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from datetime import date
 from django.contrib.auth.decorators import login_required, user_passes_test
-from IndexApp import models
+from IndexApp import models, forms
 
 # Create your views here.
 def index(request):
@@ -26,4 +26,15 @@ def profile(request):
 	return render(request, 'IndexApp/profile.html', {
 			'profile': profile,
 			'user_age': age,
+		})
+
+@login_required
+def profile_edit(request):
+	user = request.user
+	profile = models.Profile.objects.get(user=user.id)
+	ProfileInfoEditForm = forms.ProfileInfoEditForm()
+	ProfilePhotoEditForm = forms.ProfilePhotoEditForm()
+	return render(request, 'IndexApp/profile_edit.html', {
+			'ProfileInfoEditForm': ProfileInfoEditForm,
+			'ProfilePhotoEditForm': ProfilePhotoEditForm,
 		})

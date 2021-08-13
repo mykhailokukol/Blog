@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 	<meta charset="utf-8">
@@ -8,6 +9,7 @@
 <body>
 {% include 'blocks/header.html' %}
 
+<p>Photo: <img src="profile.photo"></p>
 <p>Username: {{ user.username }}</p>
 <p>Name: {{ user.first_name }}</p>
 <p>Surname: {{ user.last_name }}</p>
