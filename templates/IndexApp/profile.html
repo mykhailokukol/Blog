@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	{% include 'blocks/links.html' %}
+</head>
+<body>
+{% include 'blocks/header.html' %}
+
+<p>Username: {{ user.username }}</p>
+<p>Name: {{ user.first_name }}</p>
+<p>Surname: {{ user.last_name }}</p>
+<p>email: {{ user.email }}</p>
+<p>Birth Date: {{ profile.birth_date }}</p>
+<p>Location: {{ profile.location }}</p>
+<p>Age: {{ user_age }}</p>
+<p>Activity: {{ profile.activity }}</p>
+<p>About: {{ profile.about_text }}</p>
+<p>Date and time of registration: {{ profile.created }}</p>
+<p><a href="/profile/edit/">Редактировать</a></p>
+
+{% include 'blocks/footer.html' %}
+</body>
+</html>
