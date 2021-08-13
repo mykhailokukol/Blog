@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	{% include 'blocks/links.html' %}
+</head>
+<body>
+{% include 'blocks/header.html' %}
+<form method="POST">
+	{% csrf_token %}
+	{{ DeezerForm.as_p }}
+</form>
+{% include 'blocks/footer.html' %}
+</body>
+</html>
