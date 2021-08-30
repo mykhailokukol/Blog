@@ -1,13 +1,13 @@
 <header>
 	<table class="u-full-width">
 		<tr>
-			<td><a href="/">Главная</a></td>
-			<td><a href="#">#</a></td>
+			<td><a href="{% url 'index_page' %}">Главная</a></td>
+			<td><a href="#">DRF</a></td>
 			<td><a href="#">#</a></td>
 			<td><a href="#">#</a></td>
 			<td><a href="#">#</a></td>
 			{% if user.is_authenticated %}
-			<td><a href="/profile/">{{ user.username }}</a></td>
+			<td><a href="{% url 'profile_page' %}">{{ user.username }}</a></td>
 			<td><a href="#">Выйти</a></td>
 			{% else %}
 			<td><a href="#">Войти</a></td>
