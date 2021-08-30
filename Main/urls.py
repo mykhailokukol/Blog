@@ -21,8 +21,7 @@ from DRF_app.urls import router
 
 urlpatterns = [
     path('api/token/', obtain_auth_token, name='api-token'),
-    path('api/', include(router.urls)),
+    path('api/', include(router.urls), name='DRF'),
     path('admin/', admin.site.urls),
     path('', include('IndexApp.urls')),
-    # path('drf/', include('DRF_app.urls')),
 ]
