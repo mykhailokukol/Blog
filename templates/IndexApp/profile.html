@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load staticfiles %}
 <html>
 <head>
 	<meta charset="utf-8">
@@ -9,7 +9,7 @@
 <body>
 {% include 'blocks/header.html' %}
 <div class="content">
-	<p>Photo: <img src="profile.photo"></p>
+	<p><img id="prof_img" src="{% if profile.photo.url != '' %}{{ profile.photo.url }}{% else %} https://agile.yakubovsky.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png {% endif %}" alt="Image Error"></p>
 	<p>Username: {{ user.username }}</p>
 	<p>Name: {{ user.first_name }}</p>
 	<p>Surname: {{ user.last_name }}</p>

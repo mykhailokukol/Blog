@@ -135,4 +135,6 @@ STATICFILES_DIRS = [
     STATICFILES_DIR,
 ]
 
-GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
+MEDIA_URL = '/media/'
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = MEDIA_DIR

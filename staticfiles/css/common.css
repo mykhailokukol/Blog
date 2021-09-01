@@ -1,5 +1,4 @@
 header {
-  /* background-color for testing */
   background-color: #d7d7d9;
 
   margin: 0;
@@ -34,8 +33,6 @@ header a:hover {
 }
 
 body {
-  /* background-color: #d4d4d6; */
-
   margin: 0;
 }
 
@@ -57,4 +54,9 @@ body {
 
 .content a:hover {
   text-decoration: underline;
+}
+
+#prof_img {
+  height: 128px;
+  width: 128px;
 }
