@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'blocks/links.html' %}
+  </head>
+  <body>
+    {% include 'blocks/header.html' %}
+    <div class="content">
+      <div class="signup_form">
+        <form class="" action="{% url 'signup' %}" method="post">
+          {% csrf_token %}
+          {{ SignupForm.as_p }}
+          <button type="submit" name="button">Зарегистрироваться</button>
+        </form>
+      </div>
+    </div>
+    {% include 'blocks/footer.html' %}
+  </body>
+</html>

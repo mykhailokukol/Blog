@@ -32,6 +32,10 @@ header a:hover {
   text-decoration: underline;
 }
 
+header a:hover#logout {
+  color: #bf0000;
+}
+
 body {
   margin: 0;
 }

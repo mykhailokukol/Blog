@@ -1,23 +1,20 @@
 from django import forms
 from IndexApp import models
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
-class ProfileInfoEditForm(forms.Form):
-	location = forms.CharField(max_length=32, label='Город, Страна')
-	birth_date = forms.DateField(widget=forms.DateInput(), label='Дата рождения')
-	activity = forms.CharField(max_length=128, label='Деятельность')
-	about_text = forms.CharField(widget=forms.Textarea(attrs={
-		"rows":5,
-		"cols":20,
-		"style":"resize:none;"
-		}), label='О себе')
-#
-class ProfilePhotoEditForm(forms.Form):
+class LoginForm(forms.Form):
+
+	username = forms.CharField(max_length=128, label='Никнейм')
+	password = forms.CharField(widget=forms.PasswordInput, label='Пароль')
+
+class SignupForm(UserCreationForm):
+
+	first_name = forms.CharField(max_length=128, label='Имя')
+	last_name = forms.CharField(max_length=128, label='Фамилия')
+	email = forms.EmailField(max_length=128, label='Электронная почта')
+
 	class Meta:
-		model = models.Profile
-		fields = (
-				'photo',
-			)
-		labels = {
-				'photo': 'Загрузите фото',
-		}
+		model = User
+		fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )

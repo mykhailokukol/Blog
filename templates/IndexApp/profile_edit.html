@@ -9,14 +9,7 @@
 <body>
 {% include 'blocks/header.html' %}
 
-<form method="POST">
-	{% csrf_token %}
-	{{ ProfileInfoEditForm.as_p }}
-</form>
-<form method="POST">
-	{% csrf_token %}
-	{{ ProfilePhotoEditForm.as_p }}
-</form>
+
 
 {% include 'blocks/footer.html' %}
 </body>

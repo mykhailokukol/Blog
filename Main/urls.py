@@ -22,6 +22,6 @@ from DRF_app.urls import router
 urlpatterns = [
     path('api/token/', obtain_auth_token, name='api-token'),
     path('api/', include(router.urls)),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='django_admin'),
     path('', include('IndexApp.urls')),
 ]
