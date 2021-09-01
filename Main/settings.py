@@ -134,3 +134,5 @@ STATICFILES_DIR = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     STATICFILES_DIR,
 ]
+
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')

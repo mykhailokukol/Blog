@@ -8,19 +8,20 @@
 </head>
 <body>
 {% include 'blocks/header.html' %}
-
-<p>Photo: <img src="profile.photo"></p>
-<p>Username: {{ user.username }}</p>
-<p>Name: {{ user.first_name }}</p>
-<p>Surname: {{ user.last_name }}</p>
-<p>email: {{ user.email }}</p>
-<p>Birth Date: {{ profile.birth_date }}</p>
-<p>Location: {{ profile.location }}</p>
-<p>Age: {{ user_age }}</p>
-<p>Activity: {{ profile.activity }}</p>
-<p>About: {{ profile.about_text }}</p>
-<p>Date and time of registration: {{ profile.created }}</p>
-<p><a href="/profile/edit/">Редактировать</a></p>
+<div class="content">
+	<p>Photo: <img src="profile.photo"></p>
+	<p>Username: {{ user.username }}</p>
+	<p>Name: {{ user.first_name }}</p>
+	<p>Surname: {{ user.last_name }}</p>
+	<p>email: {{ user.email }}</p>
+	<p>Birth Date: {{ profile.birth_date }}</p>
+	<p>Location: {{ profile.location }}</p>
+	<p>Age: {{ user_age }}</p>
+	<p>Activity: {{ profile.activity }}</p>
+	<p>About: {{ profile.about_text }}</p>
+	<p>Date and time of registration: {{ profile.created }}</p>
+	<p><a href="/profile/edit/">Редактировать</a></p>
+</div>
 
 {% include 'blocks/footer.html' %}
 </body>
