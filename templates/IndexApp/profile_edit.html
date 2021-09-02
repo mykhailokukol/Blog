@@ -9,7 +9,16 @@
 <body>
 {% include 'blocks/header.html' %}
 
-
+	<div class="content">
+		<div class="edit_profile_form">
+			<form class="" action="{% url 'profile_edit_page' %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ UserEditForm.as_p }}
+				{{ ProfileEditForm.as_p }}
+				<button type="submit" name="button">Обновить информацию</button>
+			</form>
+		</div>
+	</div>
 
 {% include 'blocks/footer.html' %}
 </body>

@@ -18,3 +18,22 @@ class SignupForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+
+class EditUserForm(forms.ModelForm):
+
+	class Meta:
+		model = User
+		fields = ('username', 'first_name', 'last_name', 'email', )
+
+class EditProfileForm(forms.ModelForm):
+
+	class Meta:
+		model = models.Profile
+		fields = ('location', 'birth_date', 'activity', 'about_text', 'photo', )
+		labels = {
+			'location': 'Место проживания',
+			'birth_date': 'Дата рождения',
+			'activity': 'Кратко о себе',
+			'about_text': 'Развернуто о себе',
+			'photo': 'Ваше фото',
+		}

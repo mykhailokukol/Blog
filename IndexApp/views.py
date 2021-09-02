@@ -17,7 +17,7 @@ def profile(request):
 	profiles_list = models.Profile.objects.all()
 	profile = profiles_list.get(user=user.id)
 	# Формула расчета возраста
-	age = 'Не указано.'
+	age = 'Мы неспособны посчитать =('
 	if profile.birth_date is not None:
 		age = date.today().year - profile.birth_date.year - ((date.today().month, date.today().day) < (profile.birth_date.month, profile.birth_date.day))
 
@@ -28,9 +28,22 @@ def profile(request):
 
 @login_required
 def profile_edit(request):
+	if request.method == 'POST':
+		UserEditForm = forms.EditUserForm(request.POST, instance=request.user)
+		ProfileEditForm = forms.EditProfileForm(request.POST, request.FILES, instance=request.user.profile)
+		if UserEditForm.is_valid() and ProfileEditForm.is_valid():
+			user_form = UserEditForm.save()
+			custom_form = ProfileEditForm.save(commit=False)
+			custom_form.user = user_form
+			custom_form.save()
+			return redirect('/profile/')
+	else:
+		UserEditForm = forms.EditUserForm(instance=request.user)
+		ProfileEditForm = forms.EditProfileForm(instance=request.user.profile)
 
 	return render(request, 'IndexApp/profile_edit.html', {
-
+			'UserEditForm': UserEditForm,
+			'ProfileEditForm': ProfileEditForm,
 		})
 
 @login_required
