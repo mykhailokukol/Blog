@@ -10,16 +10,14 @@
 {% include 'blocks/header.html' %}
 <div class="content">
 	<p><img id="prof_img" src="{% if profile.photo.url != '' %}{{ profile.photo.url }}{% else %} https://agile.yakubovsky.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png {% endif %}" alt="Image Error"></p>
-	<p>Username: {{ user.username }}</p>
-	<p>Name: {{ user.first_name }}</p>
-	<p>Surname: {{ user.last_name }}</p>
-	<p>email: {{ user.email }}</p>
-	<p>Birth Date: {{ profile.birth_date }}</p>
-	<p>Location: {{ profile.location }}</p>
-	<p>Age: {{ user_age }}</p>
-	<p>Activity: {{ profile.activity }}</p>
-	<p>About: {{ profile.about_text }}</p>
-	<p>Date and time of registration: {{ profile.created }}</p>
+	<p>{{ user.first_name }} {{ user.last_name }} a.k.a. {{ user.username }}</p>
+	<p>Электронная почта: {{ user.email }}</p>
+	<p>Дата рождения: {{ profile.birth_date }}</p>
+	<p>Место проживания: {{ profile.location }}</p>
+	<p>Возраст: {{ user_age }}</p>
+	<p>Активность: {{ profile.activity }}</p>
+	<p>О себе: {{ profile.about_text }}</p>
+	<p>Дата и время регистрации: {{ profile.created }}</p>
 	<p><a href="/profile/edit/">Редактировать</a></p>
 </div>
 

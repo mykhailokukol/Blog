@@ -32,7 +32,7 @@ class EditProfileForm(forms.ModelForm):
 		fields = ('location', 'birth_date', 'activity', 'about_text', 'photo', )
 		labels = {
 			'location': 'Место проживания',
-			'birth_date': 'Дата рождения',
+			'birth_date': 'Дата рождения (ДД.ММ.ГГГГ)',
 			'activity': 'Кратко о себе',
 			'about_text': 'Развернуто о себе',
 			'photo': 'Ваше фото',
