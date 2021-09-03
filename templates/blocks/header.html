@@ -2,7 +2,7 @@
 	<a href="{% url 'index_page' %}" id="header_main">Главная</a>
 	<a href="/api/">DRF API</a>
 	<a href="/admin/">Admin Panel</a>
-	<a href="#">#</a>
+	<a href="{% url 'about_us' %}">About us</a>
 	<a href="#">#</a>
 	{% if user.is_authenticated %}
 		<a href="{% url 'profile_page' %}">{{ user.username }}</a>

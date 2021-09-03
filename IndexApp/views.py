@@ -95,3 +95,12 @@ def signup_view(request):
 	return render(request, 'IndexApp/signup.html', {
 		'SignupForm': form,
 	})
+
+def about_us(request):
+
+	misha = models.Profile.objects.get(user=request.user)
+
+	return render(request, 'IndexApp/about_us.html', {
+		'user': request.user,
+		'misha': misha,
+	})

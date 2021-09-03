@@ -1,0 +1,35 @@
+.about-header {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
+}
+
+.about-misha {
+  padding: 50px;
+  width: 40%;
+
+  background-color: #b5dcf5;
+
+}
+
+.about-misha img {
+  height: 220px;
+  width: 220px;
+}
+
+
+
+.about-oleg {
+  padding: 50px;
+  width: 40%;
+
+  background-color: #f5b5c4;
+}
