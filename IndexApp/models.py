@@ -23,3 +23,12 @@ def create_user_profile(sender, instance, created, **kwargs):
 	if created:
 		Profile.objects.create(user=instance)
 	instance.profile.save()
+
+class Post(models.Model):
+
+	title = models.CharField(max_length=128, unique=True, default='Название поста')
+	text = models.TextField(null=True, default='Текст поста')
+	likes = models.ManyToManyField(User, null=True, blank=True)
+
+	def __str__(self):
+		return self.title

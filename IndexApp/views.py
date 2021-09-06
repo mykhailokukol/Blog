@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from datetime import date
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout, login, authenticate
@@ -6,10 +6,15 @@ from IndexApp import models, forms
 
 # Create your views here.
 def index(request):
-
+	posts = models.Post.objects.all()
 	return render(request, 'IndexApp/index.html', {
-
+			'posts': posts,
 		})
+
+def like_post(request, pk):
+	post = get_object_or_404(models.Post, id=request.POST.get('post_id'))
+	post.likes.add(request.user)
+	return redirect('/')
 
 @login_required
 def profile(request):
