@@ -7,13 +7,34 @@ from IndexApp import models, forms
 # Create your views here.
 def index(request):
 	posts = models.Post.objects.all()
+	comments = models.PostComment.objects.all()
+	AddCommentForm = forms.AddCommentForm()
 	return render(request, 'IndexApp/index.html', {
 			'posts': posts,
+			'comments': comments,
+			'AddCommentForm': AddCommentForm,
 		})
+
+def add_comment(request, pk):
+	if request.method == 'POST':
+		AddCommentForm = forms.AddCommentForm(request.POST)
+		if AddCommentForm.is_valid():
+			text = AddCommentForm.cleaned_data.get('text')
+			post = get_object_or_404(models.Post, id=request.POST.get('post_comment_id'))
+			comment = models.PostComment.objects.create(user=request.user, text=text, post=post)
+			# comment.save()
+	else:
+		AddCommentForm = forms.AddCommentForm()
+	return redirect('/')
+
+
 
 def like_post(request, pk):
 	post = get_object_or_404(models.Post, id=request.POST.get('post_id'))
-	post.likes.add(request.user)
+	if request.user in post.likes.all():
+		post.likes.remove(request.user)
+	else:
+		post.likes.add(request.user)
 	return redirect('/')
 
 @login_required

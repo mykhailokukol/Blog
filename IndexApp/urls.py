@@ -13,4 +13,5 @@ urlpatterns = [
 	path('signup/', views.signup_view, name='signup'),
 	path('about-us/', views.about_us, name='about_us'),
 	path('like/<int:pk>', views.like_post, name='like_post'),
+	path('comment/<int:pk>', views.add_comment, name='add_comment'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

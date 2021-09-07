@@ -37,3 +37,7 @@ class EditProfileForm(forms.ModelForm):
 			'about_text': 'Развернуто о себе',
 			'photo': 'Ваше фото',
 		}
+
+class AddCommentForm(forms.Form):
+
+	text = forms.CharField(max_length=128, help_text='Ваш комментарий', label=None)

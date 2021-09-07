@@ -32,3 +32,12 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class PostComment(models.Model):
+
+	post = models.ForeignKey('Post', on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	text = models.CharField(max_length=128, null=False, blank=False, default='Ваш комментарий')
+
+	def __str__(self):
+		return 'Пост: %s, Пользователь: %s, Текст: %s' % (self.post, self.user, self.text)
