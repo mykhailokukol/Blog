@@ -9,6 +9,7 @@ class LoginForm(forms.Form):
 	username = forms.CharField(max_length=128, label='Никнейм')
 	password = forms.CharField(widget=forms.PasswordInput, label='Пароль')
 
+
 class SignupForm(UserCreationForm):
 
 	first_name = forms.CharField(max_length=128, label='Имя')
@@ -19,11 +20,13 @@ class SignupForm(UserCreationForm):
 		model = User
 		fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
+
 class EditUserForm(forms.ModelForm):
 
 	class Meta:
 		model = User
 		fields = ('username', 'first_name', 'last_name', 'email', )
+
 
 class EditProfileForm(forms.ModelForm):
 
@@ -37,6 +40,7 @@ class EditProfileForm(forms.ModelForm):
 			'about_text': 'Развернуто о себе',
 			'photo': 'Ваше фото',
 		}
+
 
 class AddCommentForm(forms.Form):
 

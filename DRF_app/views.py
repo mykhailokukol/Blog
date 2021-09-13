@@ -14,6 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.UserSerializer
     permissions_class = [permissions.IsAuthenticated]
 
+
 class ProfileViewSet(viewsets.ModelViewSet):
     """
     Обзор API модели 'Профиля' с возможностью редактировать
@@ -22,6 +23,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ProfileSerializer
     permissions_class = [permissions.IsAuthenticated]
 
+
 class PostViewSet(viewsets.ModelViewSet):
     """
     Обзор API модели 'Пост' с возможностью редактировать
@@ -29,6 +31,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = index_models.Post.objects.all().order_by('-title')
     serializer_class = serializers.PostSerializer
     permissions_class = [permissions.IsAuthenticated]
+
 
 class PostCommentViewSet(viewsets.ModelViewSet):
     """

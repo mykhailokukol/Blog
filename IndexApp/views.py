@@ -15,6 +15,7 @@ def index(request):
 			'AddCommentForm': AddCommentForm,
 		})
 
+
 def add_comment(request, pk):
 	if request.method == 'POST':
 		AddCommentForm = forms.AddCommentForm(request.POST)
@@ -28,7 +29,6 @@ def add_comment(request, pk):
 	return redirect('/')
 
 
-
 def like_post(request, pk):
 	post = get_object_or_404(models.Post, id=request.POST.get('post_id'))
 	if request.user in post.likes.all():
@@ -36,6 +36,7 @@ def like_post(request, pk):
 	else:
 		post.likes.add(request.user)
 	return redirect('/')
+
 
 @login_required
 def profile(request):
@@ -51,6 +52,7 @@ def profile(request):
 			'profile': profile,
 			'user_age': age,
 		})
+
 
 @login_required
 def profile_edit(request):
@@ -71,6 +73,7 @@ def profile_edit(request):
 			'UserEditForm': UserEditForm,
 			'ProfileEditForm': ProfileEditForm,
 		})
+
 
 @login_required
 def logout_view(request):
@@ -98,6 +101,7 @@ def login_view(request):
 		'LoginForm': LoginForm,
 	})
 
+
 def signup_view(request):
 	logout(request)
 
@@ -121,6 +125,7 @@ def signup_view(request):
 	return render(request, 'IndexApp/signup.html', {
 		'SignupForm': form,
 	})
+
 
 def about_us(request):
 

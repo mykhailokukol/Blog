@@ -11,6 +11,7 @@ class Sprint(models.Model):
     def __str__(self):
         return self.name or _('Sprint ending: %s') % (self.end)
 
+
 class Task(models.Model):
 
     STATUS_TODO = 1

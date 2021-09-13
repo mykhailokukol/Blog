@@ -17,12 +17,14 @@ class Profile(models.Model):
 	def __str__(self):
 		return ('%s %s' % (self.user.first_name, self.user.last_name))
 
+
 # Создание объекта модели Profile во время создания нового пользователя
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:
 		Profile.objects.create(user=instance)
 	instance.profile.save()
+
 
 class Post(models.Model):
 
@@ -32,6 +34,7 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
 
 class PostComment(models.Model):
 

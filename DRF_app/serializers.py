@@ -9,15 +9,18 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', ]
 
+
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = index_models.Profile
         fields = ['user', 'birth_date', 'activity', 'location', ]
 
+
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = index_models.Post
         fields = ['title', 'text', 'likes', ]
+
 
 class PostCommentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
