@@ -124,7 +124,7 @@ def signup_view(request):
 
 def about_us(request):
 
-	misha = models.Profile.objects.get(user=request.user)
+	misha = models.Profile.objects.get(user=models.User.objects.get(username='admin'))
 
 	return render(request, 'IndexApp/about_us.html', {
 		'user': request.user,
