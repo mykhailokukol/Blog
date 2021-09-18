@@ -1,4 +1,25 @@
+.posts-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
+}
+
+.posts-list {
+  padding: 50px;
+  width: 40%;
+}
+
 .post {
+  padding: 5px;
+  margin-bottom: 10px;
+
+  border: solid #dbdbdb;
+}
+
+.post-create {
   padding: 5px;
   margin-bottom: 10px;
 
