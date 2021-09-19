@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'blocks/links.html' %}
+  </head>
+  <body>
+    {% include 'blocks/header.html' %}
+
+      <div class="content">
+        <h2>Редактирование "{{ post.title }}"</h2>
+        <form class="" action="{% url 'post_edit_page' post.pk %}" method="post">
+          {% csrf_token %}
+          {{ PostForm.as_p }}
+          <button type="submit" name="button">Внести изменения</button>
+        </form>
+      </div>
+
+    {% include 'blocks/footer.html' %}
+  </body>
+</html>

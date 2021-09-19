@@ -20,10 +20,12 @@
 						<!-- TODO: Перечисление лайкнувших пользователей в виде ссылок на их профили -->
 						<!-- Если кол-во лайков больше 1, то они перечисляются через запятую -->
 						<p>Нравится: {% for user in post.likes.all %}{% if post.likes.all.count > 1 %}{{ user }}, {% else %}{{ user }}{% endif %}{% endfor %}</p>
-						<form class="" action="{% url 'like_post' post.pk %}" method="post">
-							{% csrf_token %}
-							<button type="submit" name="post_id" value="{{ post.id }}">{% if not request.user in post.likes.all %}Нравится{% else %}Не нравится{% endif %}</button>
-						</form>
+						{% if request.user.is_authenticated %}
+							<form class="" action="{% url 'like_post' post.pk %}" method="post">
+								{% csrf_token %}
+								<button type="submit" name="post_id" value="{{ post.id }}">{% if not request.user in post.likes.all %}Нравится{% else %}Не нравится{% endif %}</button>
+							</form>
+						{% endif %}
 						{% if post.edited != post.created %}
 						  <p>Изменено: {{ post.edited }}</p>
 						{% endif %}
@@ -37,11 +39,18 @@
 								</div>
 							{% endif %}
 						{% endfor %}
-						<form class="" action="{% url 'add_comment' post.pk %}" method="post">
-							{% csrf_token %}
-							{{ AddCommentForm.as_p }}
-							<button type="submit" name="post_comment_id" value="{{ post.id }}">Добавить комментарий</button>
-						</form>
+						{% if request.user.is_authenticated %}
+							<form class="" action="{% url 'add_comment' post.pk %}" method="post">
+								{% csrf_token %}
+								{{ AddCommentForm.as_p }}
+								<button type="submit" name="post_comment_id" value="{{ post.id }}">Добавить комментарий</button>
+							</form>
+							{% if request.user == post.author %}
+							  <p><a href="{% url 'post_edit_page' post.id %}">Редактировать</a></p>
+							{% endif %}
+						{% else %}
+							<p><a href="{% url 'login' %}">Авторизируйтесь</a>, чтобы иметь возможность оставлять комментарии.</p>
+						{% endif %}
 					</div>
 				{% endfor %}
 			</div>
@@ -49,7 +58,7 @@
 				{% if request.user.is_authenticated %}
 					<form class="" action="{% url 'index_page' %}" method="post">
 						{% csrf_token %}
-						{{ CreatePostForm.as_p }}
+						{{ PostForm.as_p }}
 						<button type="submit" name="button">Опубликовать</button>
 					</form>
 				{% else %}

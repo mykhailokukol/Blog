@@ -2,6 +2,7 @@ from django import forms
 from IndexApp import models
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 class LoginForm(forms.Form):
@@ -50,11 +51,12 @@ class AddCommentForm(forms.Form):
         max_length=128, help_text='Ваш комментарий', label=None)
 
 
-class CreatePostForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
 
     class Meta:
         model = models.Post
         fields = ['title', 'text']
+        exclude = ('user', )
         widgets = {
             'text': forms.Textarea(attrs={'style': 'resize: None;'})
         }

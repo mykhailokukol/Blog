@@ -9,6 +9,7 @@ from . import views
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index_page'),
     path('profile/<int:pk>/', login_required(views.ProfileView.as_view()), name='profile_page'),
+    path('post/edit/<int:pk>/', login_required(views.PostEditView.as_view()), name='post_edit_page'),
     path('profile/edit/', views.profile_edit, name='profile_edit_page'),
     path('logout/', views.logout_view, name='logout'),
     path('login/', views.login_view, name='login'),

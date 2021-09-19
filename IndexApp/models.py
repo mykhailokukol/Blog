@@ -3,19 +3,30 @@ from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from datetime import date
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=32, null=True)
     birth_date = models.DateField(null=True)
+    age = models.PositiveSmallIntegerField(default=0)
     activity = models.CharField(max_length=128, null=True)
     about_text = models.TextField(null=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
     photo = models.ImageField(upload_to='', null=True, blank=True)
 
+    # age = date.today().year - profile.birth_date.year - ((date.today().month, date.today().day) < (profile.birth_date.month, profile.birth_date.day))
+
     def __str__(self):
         return ('%s %s' % (self.user.first_name, self.user.last_name))
+
+    def save(self, *args, **kwargs):
+        try:
+            self.age = date.today().year - self.birth_date.year - ((date.today().month, date.today().day) < (self.birth_date.month, self.birth_date.day))
+            super(Profile, self).save(*args, **kwargs)
+        except Exception:
+            pass
 
 
 # Создание объекта модели Profile во время создания нового пользователя

@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout, login, authenticate
-from django.views.generic import View
-from datetime import date
+from django.views.generic import View, UpdateView
 from IndexApp import models, forms
 from .utils import ObjectDetailMixin
 
@@ -15,40 +14,70 @@ class IndexView(View):
         comments = models.PostComment.objects.all()
 
         AddCommentForm = forms.AddCommentForm()
-        CreatePostForm = forms.CreatePostForm()
+        PostForm = forms.PostForm()
 
         return render(request, 'IndexApp/index.html', {
             'posts': posts,
             'comments': comments,
             'AddCommentForm': AddCommentForm,
-            'CreatePostForm': CreatePostForm,
+            'PostForm': PostForm,
         })
 
     def post(self, request):
-        CreatePostForm = forms.CreatePostForm(request.POST)
-        if CreatePostForm.is_valid():
-            # TODO: Проверка на уникальность поста
-            new_post = CreatePostForm.save(commit=False)
+        PostForm = forms.PostForm(request.POST)
+        if PostForm.is_valid():
+            new_post = PostForm.save(commit=False)
             new_post.author = request.user
-            new_post = CreatePostForm.save()
+            new_post = PostForm.save()
             return redirect('/')
+        else:
+            return redirect('/') # очень важный кусок кода
+
+class PostEditView(View):
+
+    def get(self, request, pk):
+        current_post = get_object_or_404(models.Post, pk=pk)
+
+        return render(request, 'IndexApp/post_edit.html', {
+            'PostForm': forms.PostForm(),
+            'post': current_post,
+        })
+
+    def post(self, request, pk):
+        current_post = get_object_or_404(models.Post, pk=pk)
+        form = forms.PostForm(request.POST, instance=current_post)
+        if form.is_valid():
+            updated_post = form.save()
+            return redirect('/')
+        else:
+            return redirect('/')
+
+        return render(request, 'IndexApp/post_edit.html', {
+            'PostForm': form,
+            'post': current_post,
+        })
+
+
+class ProfileView(ObjectDetailMixin, View):
+    model = models.Profile
+    template = 'IndexApp/profile.html'
 
 
 def add_comment(request, pk):
     if request.method == 'POST':
         AddCommentForm = forms.AddCommentForm(request.POST)
         if AddCommentForm.is_valid():
-            text = AddCommentForm.cleaned_data.get('text')
+            text = AddCommentForm.cleaned_data['text']
             post = get_object_or_404(
                 models.Post, id=request.POST.get('post_comment_id'))
             comment = models.PostComment.objects.create(
                 user=request.user, text=text, post=post)
-            # comment.save()
     else:
         AddCommentForm = forms.AddCommentForm()
     return redirect('/')
 
 
+@login_required
 def like_post(request, pk):
     post = get_object_or_404(models.Post, id=request.POST.get('post_id'))
     if request.user in post.likes.all():
@@ -56,14 +85,6 @@ def like_post(request, pk):
     else:
         post.likes.add(request.user)
     return redirect('/')
-
-
-class ProfileView(ObjectDetailMixin, View):
-    model = models.Profile
-    template = 'IndexApp/profile.html'
-    # TODO: BELOW.
-    # Формула расчета возраста
-    # age = date.today().year - profile.birth_date.year - ((date.today().month, date.today().day) < (profile.birth_date.month, profile.birth_date.day))
 
 
 @login_required
