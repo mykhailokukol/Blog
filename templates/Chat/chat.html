@@ -28,7 +28,18 @@
               <p>Изменено: {{ msg.edited }}</p>
             {% endif %}
             {% if msg.author == request.user %}
-              <a href="#">Редактировать</a>
+              <a href="{% url 'edit_msg_page' msg.pk %}">Редактировать</a>
+            {% endif %}
+            {% if edit_form %}
+              {% if pk == msg.id %}
+                <form class="" action="{% url 'edit_msg_page' msg.pk %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ edit_form.text }}
+                  {{ edit_form.image }}
+                  <button type="submit" name="button">Изменить</button>
+                </form>
+                <a href="{% url 'chat_page' %}">Отмена редактирования</a>
+              {% endif %}
             {% endif %}
           </div>
           <div class="msg-content">
@@ -41,10 +52,12 @@
       </div>
       <div class="message-form">
         <form class="" action="{% url 'chat_page' %}" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{ form.text }}
-          {{ form.image }}
-          <button type="submit" name="button">Отправить</button>
+            {% csrf_token %}
+            {{ form.text }}
+            {{ form.image }}
+            {% if form %}
+              <button type="submit" name="button">Отправить</button>
+            {% endif %}
         </form>
       </div>
     </div>
