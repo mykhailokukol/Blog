@@ -20,6 +20,6 @@ class ChatView(View):
             text = form.cleaned_data['text']
             img = form.cleaned_data['image']
             message = models.Message.objects.create(author=request.user, text=text, image=img)
-            return redirect('/chat/')
+            return redirect('/chat#id_text')
         else:
-            return redirect('/chat/')
+            return redirect('/chat#id_text')

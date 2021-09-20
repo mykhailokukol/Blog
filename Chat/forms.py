@@ -10,5 +10,5 @@ class MessageForm(forms.ModelForm):
         model = models.Message
         fields = ['text', 'image']
         widgets = {
-            'text': forms.Textarea(attrs={'style': ''})
+            #
         }
