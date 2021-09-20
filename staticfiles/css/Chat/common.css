@@ -35,6 +35,20 @@
   width: 50%;
 }
 
+.msg-text {
+  padding: 1px;
+  border-width: 0 0 0 2px;
+  border-color: #66de86;
+  border-style: inset;
+
+}
+
+.msg-img {
+  width: 10%;
+  height: 10%;
+  margin: 5px;
+}
+
 .message-form {
   align-items: center;
   justify-content: center;
@@ -44,10 +58,4 @@
   resize: none;
   width: 70%;
   height: 40px;
-}
-
-.msg-img {
-  width: 10%;
-  height: 10%;
-  margin: 5px;
 }
