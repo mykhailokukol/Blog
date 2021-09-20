@@ -16,8 +16,6 @@ class Profile(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True)
     photo = models.ImageField(upload_to='', null=True, blank=True)
 
-    # age = date.today().year - profile.birth_date.year - ((date.today().month, date.today().day) < (profile.birth_date.month, profile.birth_date.day))
-
     def __str__(self):
         return ('%s %s' % (self.user.first_name, self.user.last_name))
 

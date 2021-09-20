@@ -24,4 +24,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls, name='django_admin'),
     path('', include('IndexApp.urls')),
+    path('chat/', include('Chat.urls')),
 ]

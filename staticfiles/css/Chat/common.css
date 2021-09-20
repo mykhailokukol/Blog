@@ -1,0 +1,48 @@
+.chat-content {
+  margin: 2%;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #dae8e7;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.chat-content a {
+  color: #70a5ff;
+  text-decoration: none;
+}
+
+.chat-content a:hover {
+  text-decoration: underline;
+}
+
+.chat-content p, a {
+  margin: 5px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+}
+
+.messages {
+  width: 50%;
+}
+
+.message-form textarea {
+  resize: none;
+  width: 70%;
+  height: 40px;
+}
+
+.msg-img {
+  width: 10%;
+  height: 10%;
+  margin: 5px;
+}

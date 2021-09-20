@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'IndexApp',
     'MediaApp',
     'DRF_app',
+    'Chat',
 ]
 
 MIDDLEWARE = [

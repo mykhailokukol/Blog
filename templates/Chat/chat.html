@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'blocks/links.html' %}
+    <link rel="stylesheet" href="{% static 'css/Chat/common.css' %}">
+  </head>
+  <body>
+    {% include 'blocks/header.html' %}
+
+    <div class="chat-content">
+      <div class="messages">
+        {% for msg in messages %}
+          <div class="msg-author">
+            <img class="avatar" src="{% if msg.author.profile.photo.url != '' %}{{ msg.author.profile.photo.url }}{% else %} https://agile.yakubovsky.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png {% endif %}" alt="Image Error">
+
+            {% if msg.author.first_name != '' and msg.author.last_name != '' %}
+              <strong>{{ msg.author.first_name }} {{ msg.author.last_name }}</strong>
+            {% else %}
+              <strong>{{ msg.author }}</strong>
+            {% endif %}
+          </div>
+          <div class="msg-sent-edited">
+            <p>Отправлено: {{ msg.sent }}</p>
+            {% if msg.edited != msg.sent %}
+              <p>Изменено: {{ msg.edited }}</p>
+            {% endif %}
+            {% if msg.author == request.user %}
+              <a href="#">Редактировать</a>
+            {% endif %}
+          </div>
+          <div class="msg-content">
+            {% if msg.image %}
+              <img class='msg-img' src="{{ msg.image.url }}" alt="Image Error">
+            {% endif %}
+            <p>{{ msg.text }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="message-form">
+        <form class="" action="{% url 'chat_page' %}" method="post">
+          {% csrf_token %}
+          {{ form.text }}
+          {{ form.image }}
+          <button type="submit" name="button">Отправить</button>
+        </form>
+      </div>
+    </div>
+
+    {% include 'blocks/footer.html' %}
+  </body>
+</html>
