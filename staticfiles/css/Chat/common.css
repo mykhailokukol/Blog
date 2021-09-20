@@ -35,6 +35,11 @@
   width: 50%;
 }
 
+.message-form {
+  align-items: center;
+  justify-content: center;
+}
+
 .message-form textarea {
   resize: none;
   width: 70%;

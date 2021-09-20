@@ -40,7 +40,7 @@
         {% endfor %}
       </div>
       <div class="message-form">
-        <form class="" action="{% url 'chat_page' %}" method="post">
+        <form class="" action="{% url 'chat_page' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form.text }}
           {{ form.image }}
