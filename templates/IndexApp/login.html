@@ -15,6 +15,7 @@
           <button type="submit" name="">Войти в учетную запись</button>
         </div>
       </form>
+      <p>Или войдите через <a href="{% url 'social:begin' 'google-oauth2' %}">Google</a>.</p>
     </div>
     {% include 'blocks/footer.html' %}
   </body>
