@@ -14,12 +14,15 @@
       <div class="messages">
         {% for msg in messages %}
           <div class="msg-author">
-            <img class="avatar" src="{% if msg.author.profile.photo.url != '' %}{{ msg.author.profile.photo.url }}{% else %} https://agile.yakubovsky.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png {% endif %}" alt="Image Error">
-
-            {% if msg.author.first_name != '' and msg.author.last_name != '' %}
-              <strong>{{ msg.author.first_name }} {{ msg.author.last_name }}</strong>
+            <img class="avatar" src="{% if msg.author.profile.photo.url != '' and msg.author is not None %}{{ msg.author.profile.photo.url }}{% else %} https://agile.yakubovsky.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png {% endif %}" alt="Image Error">
+            {% if msg.author is not None %}
+              {% if msg.author.first_name != '' and msg.author.last_name != '' %}
+                <strong>{{ msg.author.first_name }} {{ msg.author.last_name }}</strong>
+              {% else %}
+                <strong>{{ msg.author }}</strong>
+              {% endif %}
             {% else %}
-              <strong>{{ msg.author }}</strong>
+              <strong>Аноним</strong>
             {% endif %}
           </div>
           <div class="msg-sent-edited">

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
+# from django.core.exceptions import
 from . import models
 from . import forms
 
@@ -20,7 +21,10 @@ class ChatView(View):
         if form.is_valid():
             text = form.cleaned_data['text']
             img = form.cleaned_data['image']
-            message = models.Message.objects.create(author=request.user, text=text, image=img)
+            try:
+                message = models.Message.objects.create(author=request.user, text=text, image=img, anonymous_author=request.session.session_key)
+            except ValueError:
+                message = models.Message.objects.create(anonymous_author=request.session.session_key, text=text, image=img)
             return redirect('/chat#id_text')
         else:
             return redirect('/chat#id_text')
