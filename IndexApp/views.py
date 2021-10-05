@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout, login, authenticate
 from django.views.generic import View, UpdateView
+from django.views.generic.edit import DeleteView
 from IndexApp import models, forms
 from .utils import ObjectDetailMixin
 
@@ -56,6 +57,11 @@ class PostEditView(View):
             'PostForm': form,
             'post': current_post,
         })
+
+
+class PostDeleteView(DeleteView):
+    model = models.Post
+    success_url = '/'
 
 
 class ProfileView(ObjectDetailMixin, View):

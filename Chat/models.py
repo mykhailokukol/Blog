@@ -13,4 +13,4 @@ class Message(models.Model):
     image = models.ImageField(upload_to='Chat/messages/imgs', null=True, blank=True)
 
     def __str__(self):
-        return ('%s, %s: %s..' % (self.sent, self.author, self.text[0:15]))
+        return ('%s, %s: %s..' % (self.sent, self.author, self.text[:15]))

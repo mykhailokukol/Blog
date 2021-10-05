@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'blocks/links.html' %}
+  </head>
+  <body>
+    {% include 'blocks/header.html' %}
+
+    <div class="content">
+      <form class="" action="{% url 'post_delete_page' post.pk %}" method="post">
+        <p>Уверены, что хотите удалить этот пост?</p>
+        {% csrf_token %}
+        <button type="submit" name="button">Удалить</button>
+      </form>
+    </div>
+
+    {% include 'blocks/footer.html' %}
+  </body>
+</html>

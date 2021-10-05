@@ -46,6 +46,7 @@
 							</form>
 							{% if request.user == post.author %}
 							  <p><a href="{% url 'post_edit_page' post.id %}">Редактировать</a></p>
+								<p><a href="{% url 'post_delete_page' post.id %}">Удалить</a></p>
 							{% endif %}
 						{% else %}
 							<p><a href="{% url 'login' %}">Авторизируйтесь</a>, чтобы иметь возможность оставлять комментарии.</p>
