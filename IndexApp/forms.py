@@ -48,7 +48,7 @@ class EditProfileForm(forms.ModelForm):
 class AddCommentForm(forms.Form):
 
     text = forms.CharField(
-        max_length=128, help_text='Ваш комментарий', label=None)
+        max_length=128, label='Ваш комментарий')
 
 
 class PostForm(forms.ModelForm):
@@ -59,4 +59,8 @@ class PostForm(forms.ModelForm):
         exclude = ('user', )
         widgets = {
             'text': forms.Textarea(attrs={'style': 'resize: None;'})
+        }
+        labels = {
+            'title': 'Название',
+            'text': 'Текст',
         }

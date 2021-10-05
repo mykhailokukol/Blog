@@ -87,3 +87,7 @@ body {
 .btn-danger {
   background-color: #f0cccc;
 }
+
+.danger:hover {
+  color: #bf0000;
+}

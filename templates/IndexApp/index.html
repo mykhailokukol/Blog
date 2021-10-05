@@ -39,14 +39,14 @@
 							{% endif %}
 						{% endfor %}
 						{% if request.user.is_authenticated %}
-							<form class="" action="{% url 'add_comment' post.pk %}" method="post">
+							<form class="ur-comment" action="{% url 'add_comment' post.pk %}" method="post">
 								{% csrf_token %}
 								{{ AddCommentForm.as_p }}
 								<button class="btn" type="submit" name="post_comment_id" value="{{ post.id }}">Добавить комментарий</button>
 							</form>
 							{% if request.user == post.author %}
 							  <p><a href="{% url 'post_edit_page' post.id %}">Редактировать</a></p>
-								<p><a href="{% url 'post_delete_page' post.id %}">Удалить</a></p>
+								<p><a class="danger" href="{% url 'post_delete_page' post.id %}">Удалить</a></p>
 							{% endif %}
 						{% else %}
 							<p><a href="{% url 'login' %}">Авторизируйтесь</a>, чтобы иметь возможность оставлять комментарии.</p>
