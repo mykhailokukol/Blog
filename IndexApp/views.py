@@ -21,6 +21,7 @@ class IndexView(ListView):
         context['PostForm'] = forms.PostForm()
         return context
 
+    # Не актуально. Изменил предка вида с View на ListView в пользу пагинации.
     # def get(self, request):
 
         # posts = models.Post.objects.all().order_by('-created')

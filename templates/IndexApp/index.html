@@ -22,7 +22,7 @@
 						{% if request.user.is_authenticated %}
 							<form class="" action="{% url 'like_post' post.pk %}" method="post">
 								{% csrf_token %}
-								<button type="submit" name="post_id" value="{{ post.id }}">{% if not request.user in post.likes.all %}Нравится{% else %}Не нравится{% endif %}</button>
+								<button class="btn" type="submit" name="post_id" value="{{ post.id }}">{% if not request.user in post.likes.all %}❤{% else %}💔{% endif %}</button>
 							</form>
 						{% endif %}
 						{% if post.edited != post.created %}
@@ -42,7 +42,7 @@
 							<form class="" action="{% url 'add_comment' post.pk %}" method="post">
 								{% csrf_token %}
 								{{ AddCommentForm.as_p }}
-								<button type="submit" name="post_comment_id" value="{{ post.id }}">Добавить комментарий</button>
+								<button class="btn" type="submit" name="post_comment_id" value="{{ post.id }}">Добавить комментарий</button>
 							</form>
 							{% if request.user == post.author %}
 							  <p><a href="{% url 'post_edit_page' post.id %}">Редактировать</a></p>
@@ -59,7 +59,7 @@
 					<form class="" action="{% url 'index_page' %}" method="post">
 						{% csrf_token %}
 						{{ PostForm.as_p }}
-						<button type="submit" name="button">Опубликовать</button>
+						<button class="btn" type="submit" name="button">Опубликовать</button>
 					</form>
 				{% else %}
 					<p>Тут, кажется, что-то должно быть...</p>

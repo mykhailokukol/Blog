@@ -64,3 +64,26 @@ body {
   height: 128px;
   width: 128px;
 }
+
+.btn {
+  background-color: #d5e6f0;
+  border: 0;
+  color: black;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.btn:hover {
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+  transition: 0.4s ease;
+}
+
+.btn-danger {
+  background-color: #f0cccc;
+}

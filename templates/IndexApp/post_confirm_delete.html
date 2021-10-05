@@ -12,7 +12,7 @@
       <form class="" action="{% url 'post_delete_page' post.pk %}" method="post">
         <p>Уверены, что хотите удалить этот пост?</p>
         {% csrf_token %}
-        <button type="submit" name="button">Удалить</button>
+        <button class="btn btn-danger" type="submit" name="button">Удалить</button>
       </form>
     </div>
 
