@@ -22,7 +22,7 @@ class ChatView(View):
             text = form.cleaned_data['text']
             img = form.cleaned_data['image']
             try:
-                message = models.Message.objects.create(author=request.user, text=text, image=img, anonymous_author=request.session.session_key)
+                message = models.Message.objects.create(author=request.user, text=text, image=img, anonymous_author=None)
             except ValueError:
                 message = models.Message.objects.create(anonymous_author=request.session.session_key, text=text, image=img)
             return redirect('/chat#id_text')
