@@ -1,28 +1,40 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout, login, authenticate
-from django.views.generic import View, UpdateView
+from django.views.generic import View, UpdateView, ListView
 from django.views.generic.edit import DeleteView
 from IndexApp import models, forms
 from .utils import ObjectDetailMixin
 
 
-class IndexView(View):
+class IndexView(ListView):
+    paginate_by = 10
+    model = models.Post
+    query_set = models.Post.objects.all().order_by('-created')
+    context_object_name = 'posts'
+    template_name = 'IndexApp/index.html'
 
-    def get(self, request):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = models.PostComment.objects.all()
+        context['AddCommentForm'] = forms.AddCommentForm()
+        context['PostForm'] = forms.PostForm()
+        return context
 
-        posts = models.Post.objects.all().order_by('-created')
-        comments = models.PostComment.objects.all()
+    # def get(self, request):
 
-        AddCommentForm = forms.AddCommentForm()
-        PostForm = forms.PostForm()
-
-        return render(request, 'IndexApp/index.html', {
-            'posts': posts,
-            'comments': comments,
-            'AddCommentForm': AddCommentForm,
-            'PostForm': PostForm,
-        })
+        # posts = models.Post.objects.all().order_by('-created')
+        # comments = models.PostComment.objects.all()
+        #
+        # AddCommentForm = forms.AddCommentForm()
+        # PostForm = forms.PostForm()
+        #
+        # return render(request, 'IndexApp/index.html', {
+        #     'posts': posts,
+        #     'comments': comments,
+        #     'AddCommentForm': AddCommentForm,
+        #     'PostForm': PostForm,
+        # })
 
     def post(self, request):
         PostForm = forms.PostForm(request.POST)
