@@ -26,4 +26,5 @@ urlpatterns = [
     path('', include('IndexApp.urls')),
     path('admin/', admin.site.urls, name='django_admin'),
     path('chat/', include('Chat.urls')),
+    path('todo/', include('ToDoApp.urls')),
 ]

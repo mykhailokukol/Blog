@@ -2,7 +2,7 @@
 	<a href="{% url 'index_page' %}" id="header_main">Главная</a>
 	<a href="/api/">DRF API</a>
 	<a href="/admin/">Admin Panel</a>
-	<a href="/">To-Do</a>
+	<a href="{% url 'todo_page' %}">To-Do</a>
 	<a href="{% url 'about_us' %}">About us</a>
 	<a href="{% url 'chat_page' %}#id_text">Chat</a>
 	{% if user.is_authenticated %}

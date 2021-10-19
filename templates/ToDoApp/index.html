@@ -10,7 +10,29 @@
     {% include 'blocks/header.html' %}
 
     <div class="content">
-
+      {% if request.user.is_authenticated %}
+        {% for list in todo_lists %}
+          <div class="list">
+            {% if list.title is not None %}
+              <h3>{{ list.title }}</h3>
+            {% endif %}
+            <ul>
+              {% for task in list.tasks.all %}
+                <li>
+                  {{ task.text }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      {% endif %}
+      <div class="list">
+        <form class="" action="{% url 'todo_page' %}" method="post">
+          {% for field in CreateListForm %}
+            {{ field }}
+          {% endfor %}
+        </form>
+      </div>
     </div>
 
     {% include 'blocks/footer.html' %}
