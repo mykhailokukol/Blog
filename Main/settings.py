@@ -28,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# CELERY SETTINGS
+CELERY_TIMEZONE = "Europe/Ukraine"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
 
 # Application definition
 
@@ -45,6 +50,7 @@ INSTALLED_APPS = [
     'MediaApp',
     'DRF_app',
     'Chat',
+    'ToDoApp',
 ]
 
 MIDDLEWARE = [
